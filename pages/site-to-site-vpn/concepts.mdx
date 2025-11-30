@@ -1,0 +1,48 @@
+---
+title: Site-to-Site VPN - Concepts
+description: This page explains all the concepts related to Site-to-Site VPN.
+noindex: true
+tags: 
+dates:
+  validation: 
+  posted: 2025-11-30
+---
+
+## VPN Gateway
+
+A VPN gateway is a managed resource that serves IPsec tunnels between your external infrastructure and your Scaleway VPC. Each connection within the gateway represents an IPsec tunnel established over the public internet. A single VPN gateway can host multiple connections.
+
+## Customer Gateway
+
+A customer gateway is a logical resource that represents your on-premises network device. It acts as the endpoint of the IPsec tunnel established with the Scaleway VPN gateway. Each customer gateway can be configured with one public IPv4 address, one public IPv6 address, and the ASN of the BGP router used to establish the BGP session over the IPsec tunnel.
+
+This resource is required to define the remote side of the VPN tunnel. Its information will be used during the setup of the connection.
+
+## Connection
+
+A connection represents the bridge between your VPN gateway and your customer gateway. One connection can support up to two IPsec tunnels: one over IPv4 and one over IPv6. This allows for a highly available tunnel configuration, provided that both the VPN gateway and the customer gateway have configured public IP addresses through Scaleway resources, using the correct IP version on both ends.
+
+## Connection initiation policy
+
+The connection initiation policy (also referred to as initiation policy) specifies which gateway should initiate the IPsec tunnel: the VPN gateway or the customer gateway. The chosen gateway is responsible for kicking off the secure exchange that sets up the tunnel.
+
+## Routing policy
+
+A routing policy specifies which network traffic is permitted to pass through the IPsec tunnel between your VPN gateway and your customer gateway. By default, all routes are blocked, and only the traffic explicitly allowed by your routing policies can be forwarded. When configuring a connection, you must attach a routing policy for each traffic type (IPv4 and/or IPv6) that will be routed over the IPsec tunnel. Routing policies use IPv4/IPv6 prefix filtering to define the specific traffic that can be sent to your Scaleway VPC and to your remote infrastructure.
+
+The routing policy works together with route propagation.
+
+## Route propagation
+
+Route propagation is the process of announcing (through a BGP session) the allowed IP prefixes that you defined in your routing policy, so that traffic can flow over the VPN tunnel between your VPN gateway and your customer gateway. Route propagation must be enabled explicitly using a dedicated API call. Until route propagation is activated, no traffic can be routed through the IPsec tunnel.
+
+## BGP session
+
+A Border Gateway Protocol (BGP) session is an information exchange session in a private subnet between your VPN gateway and your customer gateway, allowing both sides to learn each other's routes. It is used to facilitate route propagation.
+
+## Security proposal
+
+A security proposal defines the encryption algorithms and authentication methods used to secure the IPsec tunnel between your VPN gateway and your customer gateway. When configuring a connection, you must define a security proposal. There are two parts to a security proposal:
+
+- IKEv2 (Internet Key Exchange): Establishes a secure connection between the VPN gateway and the customer gateway.
+- ESP (Encapsulating Security Payload): Encrypts and authenticates the payload of the IP data packets traveling through the IPsec tunnel.

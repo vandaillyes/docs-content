@@ -1,0 +1,45 @@
+---
+title: Site-to-Site VPN FAQ
+description: Get answers to the most frequently asked questions about Scaleway Site-to-Site VPN.
+noindex: true
+tags:
+dates:
+  validation: 
+  posted: 2025-11-30
+---
+
+## Overview
+
+### What is Site-to-Site VPN?
+
+Site-to-Site VPN provides an IPsec-based VPN tunnel between your Scaleway VPC and external infrastructure (on-premise, private cloud, or other public clouds). It enables private, secure connectivity to Scaleway Private Networks without requiring dedicated physical links. Site-to-Site VPN supports one or multiple VPN tunnels, dynamic routing with BGP, and IPv4/IPv6 prefix filtering to control traffic allowed to flow through the tunnel(s).
+
+### When would I want to use Site-to-Site VPN?
+
+Organizations typically use Site-to-Site VPN when they need to securely connect some remote infrastructure - such as a datacenter, an office network, or assets in the cloud - to their Scaleway VPC. Common examples include giving on-premise application servers access to databases hosted in Scaleway, allowing branch offices to reach internal services in the headquarters, or linking workloads across cloud providers without exposing them to the public internet. A Site-to-Site VPN provides an encrypted, reliable tunnel for this traffic without the overhead of having to set up physical links.
+
+## Usage and management
+
+### Does a tunnel's IP version limit the types of traffic that I can route through it?
+
+No. An IPsec tunnel established between IPv4 addresses can still carry IPv6 traffic, and vice versa. IPsec tunnels are IP-version-agnostic, so you can route both IPv4 and IPv6 traffic as long as you attach the appropriate routing policies to your connection.
+
+### What is the difference between the initiation policy and the routing policy?
+
+The initiation policy defines which gateway is responsible for initiating the IPsec tunnel: the VPN gateway in your Scaleway VPC or the customer gateway in your remote infrastructure. You set this policy when you create the connection through a dedicated API endpoint.
+
+The routing policy specifies the IPv4/IPv6 prefixes that your VPN gateway accepts from the customer gateway and the prefixes that it advertises back. You create this policy using a dedicated API endpoint.
+
+### Why is my VPN gateway in a "Locked" status? How can I unlock it?
+
+The gateway has been locked by the Trust and Safety team. You cannot carry out any actions on the gateway. [Open a support ticket](https://console.scaleway.com/support/tickets/create).
+
+## Billing and pricing
+
+### How am I billed for Site-to-Site VPN?
+
+Site-to-Site VPN is billed on a pay-as-you-go basis, and the price is made up of the following parts:
+
+- Type of VPN gateway: Pricing is based on bandwidth, and the maximum number of connections the gateway can be used for.
+- Number of active VPN connections
+- Amount of data transferred through the tunnels
