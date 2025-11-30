@@ -1,0 +1,57 @@
+---
+title: Understanding Generative APIs
+description: Learn about how Scaleway's Generative APIs can help you integrate AI capabilities into your applications.
+tags: generative-apis ai language-models
+dates:
+  validation: 
+  posted: 2025-11-30
+---
+
+## Key features and benefits
+
+Scaleway Generative APIs provide programmatic access to the most popular models of leading AI providers (e.g., OpenAI, Mistral, Deepseek) for a variety of AI capabilities. Some examples are:
+
+- Generating chat responses in multi-turn conversations
+- Generating and reviewing code
+- Classifying images
+- Transcribing speech to text
+- Converting input data to vector representations (embeddings) for downstream analysis by other models
+
+Scaleway provides pre-configured, serverless endpoints to interact with AI models, meaning that you do not have to deploy your own models. This allows you to:
+
+- Offload infrastructure management to Scaleway
+- Integrate AI functions into your applications quickly and efficiently
+- Focus on the functional aspects of your solution, such as designing relevant prompts and customizing model behavior to your specific use cases
+
+## Getting started
+
+Begin in the Scaleway Console using the web playground, where you can interact with chat models through a visual interface, sending your prompt and getting an immediate text-based response. You can customize parameters and test their impact on the model's behavior. The playground provides code snippets matching your prompt and parameter settings, which you can integrate into your codebase for querying models through API requests.
+
+When you are ready to integrate prompt logic into your application, retrieve the Generative APIs service URL and your API key. If your chosen AI provider offers an SDK, install it. You can then adapt the code snippets generated in the Scaleway Console and start making API requests.
+
+## Operational considerations
+
+Scaleway Generative APIs are hosted in European data centers on scalable and reliable infrastructure. They come with Service Level Agreements (SLAs) targeting 99.9% availability and real-time metrics providing insights into performance, security, and resource consumption.
+
+Rate limits apply to ensure fair use of synchronous HTTP calls. Higher volumes should be sent through batch processing.
+
+## Pricing
+
+Usage is priced per one million tokens processed, allowing you to process up to 1,000,000 tokens without incurring any costs.
+
+## Going further
+
+You now have a basic understanding of Scaleway Generative APIs. To go further, explore the following documentation:
+
+- Use cases and capabilities:
+    - [Integrating with popular AI tools](/generative-apis/reference-content/integrating-generative-apis-with-popular-tools/)
+    - [Supported chat, vision, audio, and embeddings models](/generative-apis/reference-content/supported-models/)
+- Practical guides:
+    - [Quickstart](/generative-apis/quickstart/)
+    - [How to](/generative-apis/how-to/)
+    - [API reference](https://www.scaleway.com/en/developers/api/generative-apis/)
+- Operations and governance:
+    - [Security and reliability](/generative-apis/reference-content/security-and-reliability/)
+    - [Rate limits](generative-apis/reference-content/rate-limits/)
+    - [Pricing and billing](/generative-apis/faq/#pricing-and-billing)
+    - [Data privacy](/generative-apis/reference-content/data-privacy/)
